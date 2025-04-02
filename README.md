@@ -86,7 +86,3 @@ Ejecutar el cuaderno (app.ipynb).
 
 El archivo Excel se generará automáticamente.
 
-Notas Adicionales
-Seguridad: Las credenciales de la base de datos están integradas en el código. Se recomienda almacenarlas de forma segura en un entorno productivo.
-
-Personalización: El código puede adaptarse para incluir nuevos tipos de eventos o columnas según necesidades futuras.
