@@ -238,7 +238,7 @@ def main(month,year):
     date_str = date_obj.strftime("%m/%Y")
 
     name_month = date_obj.strftime("%B")
-    file_name = f"{name_month} {year}.xlsx"
+    file_name = f"Novedades {name_month} {year}.xlsx"
     file_name
 
 
