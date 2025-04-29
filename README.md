@@ -86,3 +86,16 @@ Ejecutar el cuaderno (app.ipynb).
 
 El archivo Excel se generará automáticamente.
 
+
+
+Comando ejecutable:
+pyinstaller --onefile ^
+ --icon=icono/icon.ico ^
+ --hidden-import=mysql ^
+ --hidden-import=mysql.connector ^
+ --hidden-import=mysql.connector.plugins.mysql_native_password ^
+ --add-data "config.json;." ^
+ --add-data "C:/Users/Usuario/Desktop/Codigos Planificacion Estrategica/Automatizacion-Adm-Personal/.venv/Lib/site-packages/mysql/connector/locales;mysql/connector/locales" ^
+ app.py
+
+
