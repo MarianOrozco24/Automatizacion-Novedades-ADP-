@@ -9,9 +9,11 @@ dist/
 
 # pycache
 __pycache__/
-.env/
+
 
 #Ejecutables
 *.exe
 *.spec
+*.json
+*.key
 

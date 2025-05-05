@@ -7,13 +7,34 @@ import os
 from config import Config
 import customtkinter as ctk
 from tkinter import messagebox as mx
-import sys
+import sys, json
 import traceback
-from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 """ FUNCIONES """   
 import subprocess
 
-credenciales = load_dotenv()
+
+def desencriptar_credenciales ():
+    # Cargar clave
+    with open("variablesEntorno/clave_secreta.key", "rb") as archivo_clave:
+        key = archivo_clave.read()
+
+    fernet = Fernet(key)
+
+    # Cargar credencial encriptada
+    with open("credencial_encriptada.json", "rb") as archivo:
+        credencial_encriptada = archivo.read()
+
+    # Desencriptar
+    credencial = fernet.decrypt(credencial_encriptada).decode()
+    
+    # Retornamos las credenciales
+    return credencial
+
+
+
+credenciales = desencriptar_credenciales()
+# Ahora la podés usar, por ejemplo, para loguearte a una API o base de datos
 
 
 def vpn_activa(ip_servidor):
@@ -23,7 +44,7 @@ def vpn_activa(ip_servidor):
 
 def conexion_db():
     try:
-        cnx = mysql.connector.connect(host=os.getenv('DB_HOST'), user=os.getenv('DB_USER'), password=os.getenv('DB_PASS'), database=os.getenv('DB_NAME'), use_pure=True)
+        cnx = mysql.connector.connect(host="172.16.20.15", user="user_aux", password=credenciales, database="db_omnia", use_pure=True)
         print("✅ Conexion a base de datos establecida correctamente")
         return cnx
     except ConnectionError:
