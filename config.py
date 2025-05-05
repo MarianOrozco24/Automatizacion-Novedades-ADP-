@@ -4,14 +4,7 @@ import sys
 
 class Config:
     lista_columnas_vacias = ["Hs Extras", "Dep. Judicial", "Prepaga","Enlazados", "Ant. de Sueldos", "Adic. Ventas", "OBSERVACIONES"]
-    DB_HOST = "172.16.20.15"
-    DB_USER = "mariano_orozco"
-    DB_PASS = "goodTimes"
-    DB_NAME = "db_omnia"
-
-
-
-        
+            
     # Leer el config.json desde la misma carpeta donde está el ejecutable (o .py si estás en desarrollo)
     if getattr(sys, 'frozen', False):
         BASE_PATH = os.path.dirname(sys.executable)  # cuando es .exe

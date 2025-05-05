@@ -9,8 +9,12 @@ import customtkinter as ctk
 from tkinter import messagebox as mx
 import sys
 import traceback
+from dotenv import load_dotenv
 """ FUNCIONES """   
 import subprocess
+
+credenciales = load_dotenv()
+
 
 def vpn_activa(ip_servidor):
     resultado = subprocess.run(["ping", "-n", "1", ip_servidor], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -19,7 +23,7 @@ def vpn_activa(ip_servidor):
 
 def conexion_db():
     try:
-        cnx = mysql.connector.connect(host=Config.DB_HOST, user=Config.DB_USER, password=Config.DB_PASS, database=Config.DB_NAME, use_pure=True)
+        cnx = mysql.connector.connect(host=os.getenv('DB_HOST'), user=os.getenv('DB_USER'), password=os.getenv('DB_PASS'), database=os.getenv('DB_NAME'), use_pure=True)
         print("✅ Conexion a base de datos establecida correctamente")
         return cnx
     except ConnectionError:
@@ -28,9 +32,7 @@ def conexion_db():
     except Exception as error:
         traceback.print_exc()
         print(f"❌ Ocurrio un error al intentarse conectar a la base de datos\n \
-            Error: {error}\n \
-            host: {Config.DB_HOST}\n user: {Config.DB_USER} \n password: {Config.DB_PASS}\n database: {Config.DB_NAME}"
-            )
+            Error: {error}")
         
 def query(cnx, query, tabla):
     try:
